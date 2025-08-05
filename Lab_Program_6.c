@@ -3,7 +3,6 @@
 
 #define MAX_SIZE 10
 
-// Structure to represent a node in the sparse matrix
 struct Node {
     int row, col, value;
     struct Node* next;
