@@ -6,7 +6,7 @@ int recursiveBinarySearch(int arr[], int low, int high, int key) {
         int mid = low + (high - low) / 2;
 
         if (arr[mid] == key) {
-            return mid;  // Key found
+            return mid;  
         } else if (arr[mid] < key) {
             return recursiveBinarySearch(arr, mid + 1, high, key);  // Search in right half
         } else {
@@ -14,7 +14,7 @@ int recursiveBinarySearch(int arr[], int low, int high, int key) {
         }
     }
 
-    return -1;  // Key not found
+    return -1; 
 }
 
 int main() {
