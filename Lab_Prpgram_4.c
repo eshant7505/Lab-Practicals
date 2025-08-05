@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-// Function to calculate the length of a string
 int stringLength(const char *str) {
     int length = 0;
     while (str[length] != '\0') {
@@ -8,7 +7,7 @@ int stringLength(const char *str) {
     }
     return length;
 }
-// Function to reverse a string
+
 void stringReverse(char *str) {
     int length = stringLength(str);
     int i, j;
@@ -21,7 +20,7 @@ void stringReverse(char *str) {
     }
 }
 
-// Function to compare two strings
+
 int stringCompare(const char *str1, const char *str2) {
     while (*str1 != '\0' && *str2 != '\0' && *str1 == *str2) {
         str1++;
@@ -35,7 +34,7 @@ int stringCompare(const char *str1, const char *str2) {
     }
 }
 
-// Function to concatenate two strings
+
 void stringConcatenate(char *dest, const char *src) {
     int destLength = stringLength(dest);
     int i;
@@ -49,7 +48,6 @@ void stringConcatenate(char *dest, const char *src) {
     dest[destLength] = '\0';
 }
 
-// Function to copy one string to another
 void stringCopy(char *dest, const char *src) {
     while (*src != '\0') {
         *dest = *src;
@@ -69,22 +67,22 @@ int main() {
     printf("Enter the second string: ");
     scanf("%s", str2);
 
-    // String Length
+
     printf("Length of str1: %d\n", stringLength(str1));
 
-    // String Reversal
+   
     stringReverse(str1);
     printf("Reversed str1: %s\n", str1);
 
-    // String Compare
+  
     printf("Comparison result: %d\n", stringCompare(str1, str2));
 
-    // String Concatenate
+
     stringCopy(result, str1);
     stringConcatenate(result, str2);
     printf("Concatenated string: %s\n", result);
 
-    // String Copy
+    
     stringCopy(result, str1);
     printf("Copied string: %s\n", result);
 
