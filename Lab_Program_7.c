@@ -1,19 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Node structure to represent a non-zero element in the sparse matrix
 typedef struct Node {
     int row, col, value;
     struct Node* next;
 } Node;
 
-// Sparse matrix structure
 typedef struct {
     int rows, cols;
     Node** rowsArray;
 } SparseMatrix;
 
-// Function to create a new sparse matrix
 SparseMatrix* createSparseMat(int rows, int cols) {
     SparseMatrix* mat = (SparseMatrix*)malloc(sizeof(SparseMatrix));
     mat->rows = rows;
@@ -22,7 +19,6 @@ SparseMatrix* createSparseMat(int rows, int cols) {
     return mat;
 }
 
-// Function to set the value at the specified row and column
 void setValue(SparseMatrix* mat, int row, int col, int value) {
     if (row >= 0 && row < mat->rows && col >= 0 && col < mat->cols) {
         Node* newNode = (Node*)malloc(sizeof(Node));
@@ -36,7 +32,6 @@ void setValue(SparseMatrix* mat, int row, int col, int value) {
     }
 }
 
-// Function to get the value at the specified row and column
 int getValue(SparseMatrix* mat, int row, int col) {
     Node* current = mat->rowsArray[row];
     while (current != NULL) {
@@ -45,10 +40,9 @@ int getValue(SparseMatrix* mat, int row, int col) {
         }
         current = current->next;
     }
-    return 0; // Default value for non-existing elements
+    return 0;
 }
 
-// Function to add the specified value to the existing value at the specified row and column
 void addValue(SparseMatrix* mat, int row, int col, int value) {
     Node* current = mat->rowsArray[row];
     while (current != NULL) {
@@ -58,11 +52,9 @@ void addValue(SparseMatrix* mat, int row, int col, int value) {
         }
         current = current->next;
     }
-    // If the element does not exist, create a new node with the specified value
     setValue(mat, row, col, value);
 }
 
-// Function to remove the value at the specified row and column
 void removeValue(SparseMatrix* mat, int row, int col) {
     Node* current = mat->rowsArray[row];
     Node* prev = NULL;
@@ -80,18 +72,13 @@ void removeValue(SparseMatrix* mat, int row, int col) {
         current = current->next;
     }
 }
-
-// Function to get the number of rows in the sparse array
 int getNumRows(SparseMatrix* mat) {
     return mat->rows;
 }
-
-// Function to get the number of columns in the sparse array
 int getNumCols(SparseMatrix* mat) {
     return mat->cols;
 }
 
-// Function to calculate the transpose of the sparse array
 SparseMatrix* transpose(SparseMatrix* mat) {
     SparseMatrix* transposedMat = createSparseMat(mat->cols, mat->rows);
     for (int i = 0; i < mat->rows; i++) {
@@ -104,7 +91,6 @@ SparseMatrix* transpose(SparseMatrix* mat) {
     return transposedMat;
 }
 
-// Function to multiply each element of the sparse array by the specified scalar factor
 void multiplyScalar(SparseMatrix* mat, int factor) {
     for (int i = 0; i < mat->rows; i++) {
         Node* current = mat->rowsArray[i];
@@ -115,7 +101,6 @@ void multiplyScalar(SparseMatrix* mat, int factor) {
     }
 }
 
-// Function to add another sparse array to this sparse array element-wise
 void add(SparseMatrix* mat, SparseMatrix* otherMat) {
     if (mat->rows != otherMat->rows || mat->cols != otherMat->cols) {
         printf("Matrix dimensions do not match for addition\n");
@@ -130,8 +115,6 @@ void add(SparseMatrix* mat, SparseMatrix* otherMat) {
         }
     }
 }
-
-// Function to multiply this sparse array by another sparse array (matrix multiplication)
 SparseMatrix* multiply(SparseMatrix* mat, SparseMatrix* otherMat) {
     if (mat->cols != otherMat->rows) {
         printf("Matrix dimensions do not match for multiplication\n");
@@ -150,8 +133,6 @@ SparseMatrix* multiply(SparseMatrix* mat, SparseMatrix* otherMat) {
     }
     return resultMat;
 }
-
-// Function to convert the sparse array to a dense array representation
 int** toDenseArray(SparseMatrix* mat) {
     int** denseArray = (int**)malloc(mat->rows * sizeof(int*));
     for (int i = 0; i < mat->rows; i++) {
@@ -163,7 +144,6 @@ int** toDenseArray(SparseMatrix* mat) {
     return denseArray;
 }
 
-// Function to print the sparse matrix
 void printSparseMat(SparseMatrix* mat) {
     for (int i = 0; i < mat->rows; i++) {
         Node* current = mat->rowsArray[i];
@@ -175,7 +155,6 @@ void printSparseMat(SparseMatrix* mat) {
     }
 }
 
-// Function to free the memory allocated for the sparse matrix
 void freeSparseMat(SparseMatrix* mat) {
     for (int i = 0; i < mat->rows; i++) {
         Node* current = mat->rowsArray[i];
@@ -189,7 +168,6 @@ void freeSparseMat(SparseMatrix* mat) {
     free(mat);
 }
 
-// Example usage
 int main() {
     SparseMatrix* mat1 = createSparseMat(3, 4);
     setValue(mat1, 0, 0, 1);
@@ -246,7 +224,6 @@ int main() {
         printf("\n");
     }
 
-    // Free allocated memory
     freeSparseMat(mat1);
     freeSparseMat(mat2);
     for (int i = 0; i < mat1->rows; i++) {
