@@ -16,7 +16,7 @@ int iterativeBinarySearch(int arr[], int size, int key) {
         }
     }
 
-    return -1;  // Key not found
+    return -1; 
 }
 
 int main() {
