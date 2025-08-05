@@ -2,14 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Define the structure for the stack
 struct Stack {
     int top;
     unsigned capacity;
     char* array;
 };
 
-// Function to create a stack of a given capacity
 struct Stack* createStack(unsigned capacity) {
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
     stack->top = -1;
@@ -18,24 +16,20 @@ struct Stack* createStack(unsigned capacity) {
     return stack;
 }
 
-// Function to check if the stack is empty
 int isEmpty(struct Stack* stack) {
     return stack->top == -1;
 }
 
-// Function to push an element onto the stack
 void push(struct Stack* stack, char item) {
     stack->array[++stack->top] = item;
 }
 
-// Function to pop an element from the stack
 char pop(struct Stack* stack) {
     if (!isEmpty(stack))
         return stack->array[stack->top--];
     return '\0';
 }
 
-// Function to check if brackets are balanced in the expression
 int areBracketsBalanced(char exp[]) {
     struct Stack* stack = createStack(strlen(exp));
 
@@ -62,7 +56,6 @@ int areBracketsBalanced(char exp[]) {
         }
     }
 
-    // If the stack is empty, brackets are balanced
     int result = isEmpty(stack);
     free(stack->array);
     free(stack);
