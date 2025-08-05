@@ -3,28 +3,23 @@
 
 #define MAX_SIZE 100
 
-// Define the structure for the stack
 struct Stack {
     int items[MAX_SIZE];
     int top;
 };
 
-// Function to initialize the stack
 void initialize(struct Stack *stack) {
     stack->top = -1;
 }
 
-// Function to check if the stack is empty
 int isEmpty(struct Stack *stack) {
     return stack->top == -1;
 }
 
-// Function to check if the stack is full
 int isFull(struct Stack *stack) {
     return stack->top == MAX_SIZE - 1;
 }
 
-// Function to push an item onto the stack
 void push(struct Stack *stack, int value) {
     if (isFull(stack)) {
         printf("Stack overflow! Cannot push %d\n", value);
@@ -34,7 +29,6 @@ void push(struct Stack *stack, int value) {
     printf("%d pushed to the stack\n", value);
 }
 
-// Function to pop an item from the stack
 int pop(struct Stack *stack) {
     if (isEmpty(stack)) {
         printf("Stack underflow! Cannot pop from an empty stack\n");
@@ -43,7 +37,6 @@ int pop(struct Stack *stack) {
     return stack->items[stack->top--];
 }
 
-// Function to display the elements of the stack
 void display(struct Stack *stack) {
     if (isEmpty(stack)) {
         printf("Stack is empty\n");
