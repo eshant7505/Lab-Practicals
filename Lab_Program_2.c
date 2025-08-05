@@ -16,7 +16,7 @@ int linearSearch(int arr[], int size, int element) {
             return i;
         }
     }
-    return -1;  // Element not found
+    return -1;  
 }
 
 void insertElement(int arr[], int *size, int position, int element) {
